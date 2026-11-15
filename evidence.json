@@ -1,0 +1,1754 @@
+{
+  "cases": {
+    "deviation_blocking": {
+      "detail": {
+        "blocked": true,
+        "counterexample_fields_ok": true,
+        "counterexamples_saved": 159,
+        "injected": "pruner.can_skip always False",
+        "sample_counterexample": [
+          {
+            "actual": false,
+            "expected": true,
+            "predicate": [
+              "=",
+              "x",
+              "x"
+            ],
+            "rerun_argv": [
+              "python3",
+              "qa.py",
+              "verify"
+            ],
+            "source": "small_domain_pruning",
+            "stats": {
+              "rows": 0,
+              "x": {
+                "hi": null,
+                "lo": null,
+                "nulls": 0
+              },
+              "y": {
+                "hi": null,
+                "lo": null,
+                "nulls": 0
+              }
+            }
+          }
+        ],
+        "stdout_tail": [
+          "evidence.json 已重算; 总耗时 4.728s",
+          "QA_VERIFY_BLOCKED: differential_pruning_seeded, original_regression, production_deviation, pruner_stats_only, report_consistency, scan_immutability, scan_pipeline_samples, scan_pipeline_seeded, small_domain_pairs, small_domain_pruning, stress_deep_16leaf"
+        ],
+        "verify_exit_code": 1
+      },
+      "kind": "blocking",
+      "status": "pass"
+    },
+    "differential_pruning_seeded": {
+      "detail": {
+        "checks": 1050,
+        "mismatches": [],
+        "params": {
+          "bounds_styles": [
+            "small",
+            "wide+-1e30",
+            "point",
+            "huge"
+          ],
+          "constants_per_predicate": 5,
+          "leaf_range": [
+            1,
+            16
+          ],
+          "max_constant_abs": 1000000000000000000000000000000,
+          "seeds": [
+            7,
+            2024,
+            20261115
+          ],
+          "trials_per_seed": 350
+        }
+      },
+      "kind": "differential",
+      "status": "pass"
+    },
+    "differential_rows_seeded": {
+      "detail": {
+        "checks": 4200,
+        "mismatches": [],
+        "params": {
+          "bounds_styles": [
+            "small",
+            "wide+-1e30",
+            "point",
+            "huge"
+          ],
+          "constants_per_predicate": 5,
+          "leaf_range": [
+            1,
+            16
+          ],
+          "max_constant_abs": 1000000000000000000000000000000,
+          "seeds": [
+            7,
+            2024,
+            20261115
+          ],
+          "trials_per_seed": 350
+        }
+      },
+      "kind": "differential",
+      "status": "pass"
+    },
+    "evidence_reproducible": {
+      "detail": {
+        "drift": [],
+        "path": "evidence.json"
+      },
+      "kind": "evidence",
+      "status": "pass"
+    },
+    "finite_decision_basis": {
+      "detail": {
+        "cases": [
+          {
+            "case": "manual_wide_bounds_true",
+            "distinct_constants": 2,
+            "envelope_pairs": 4000000000000000000000000000000000000000000000000000000000000,
+            "note": "判定只依赖单元与 x-y 符号，不随跨度增长",
+            "null_mode_combinations": 1,
+            "representative_rows_at_most": 27,
+            "x_cells": 3,
+            "y_cells": 3
+          },
+          {
+            "case": "manual_wide_bounds_impossible",
+            "distinct_constants": 2,
+            "envelope_pairs": 4000000000000000000000000000000000000000000000000000000000000,
+            "note": "判定只依赖单元与 x-y 符号，不随跨度增长",
+            "null_mode_combinations": 1,
+            "representative_rows_at_most": 27,
+            "x_cells": 3,
+            "y_cells": 3
+          },
+          {
+            "case": "manual_cross_column_order",
+            "distinct_constants": 0,
+            "envelope_pairs": 25,
+            "note": "判定只依赖单元与 x-y 符号，不随跨度增长",
+            "null_mode_combinations": 1,
+            "representative_rows_at_most": 3,
+            "x_cells": 1,
+            "y_cells": 1
+          }
+        ],
+        "problems": []
+      },
+      "kind": "argument",
+      "status": "pass"
+    },
+    "manual_all_null": {
+      "detail": {
+        "expected_skip": true,
+        "note": "every atom is UNKNOWN; UNKNOWN cannot become TRUE",
+        "oracle": {
+          "skip": true,
+          "witness": null
+        },
+        "predicate": [
+          "or",
+          [
+            "=",
+            "x",
+            1
+          ],
+          [
+            "not",
+            [
+              "=",
+              "y",
+              2
+            ]
+          ]
+        ],
+        "production_can_skip": true,
+        "stats": {
+          "rows": 2,
+          "x": {
+            "hi": null,
+            "lo": null,
+            "nulls": 2
+          },
+          "y": {
+            "hi": null,
+            "lo": null,
+            "nulls": 2
+          }
+        }
+      },
+      "kind": "manual",
+      "status": "pass"
+    },
+    "manual_cross_column_equality_gap": {
+      "detail": {
+        "expected_skip": true,
+        "note": "disjoint integer envelopes, equality impossible",
+        "oracle": {
+          "skip": true,
+          "witness": null
+        },
+        "predicate": [
+          "=",
+          "x",
+          "y"
+        ],
+        "production_can_skip": true,
+        "stats": {
+          "rows": 2,
+          "x": {
+            "hi": 2,
+            "lo": 1,
+            "nulls": 0
+          },
+          "y": {
+            "hi": 6,
+            "lo": 5,
+            "nulls": 0
+          }
+        }
+      },
+      "kind": "manual",
+      "status": "pass"
+    },
+    "manual_cross_column_order": {
+      "detail": {
+        "expected_skip": true,
+        "note": "x<y and x>y share the same pair, no sign satisfies both",
+        "oracle": {
+          "skip": true,
+          "witness": null
+        },
+        "predicate": [
+          "and",
+          [
+            "<",
+            "x",
+            "y"
+          ],
+          [
+            ">",
+            "x",
+            "y"
+          ]
+        ],
+        "production_can_skip": true,
+        "stats": {
+          "rows": 3,
+          "x": {
+            "hi": 5,
+            "lo": 0,
+            "nulls": 0
+          },
+          "y": {
+            "hi": 5,
+            "lo": 0,
+            "nulls": 0
+          }
+        }
+      },
+      "kind": "manual",
+      "status": "pass"
+    },
+    "manual_equality_strict_bounds": {
+      "detail": {
+        "expected_skip": true,
+        "note": "x<=y is forced TRUE while x>y is forced FALSE",
+        "oracle": {
+          "skip": true,
+          "witness": null
+        },
+        "predicate": [
+          "and",
+          [
+            "<=",
+            "x",
+            "y"
+          ],
+          [
+            ">",
+            "x",
+            "y"
+          ]
+        ],
+        "production_can_skip": true,
+        "stats": {
+          "rows": 2,
+          "x": {
+            "hi": 1,
+            "lo": 1,
+            "nulls": 0
+          },
+          "y": {
+            "hi": 2,
+            "lo": 2,
+            "nulls": 0
+          }
+        }
+      },
+      "kind": "manual",
+      "status": "pass"
+    },
+    "manual_not_tautology": {
+      "detail": {
+        "expected_skip": false,
+        "note": "x!=x is FALSE for the non-NULL candidate, then NOT gives TRUE",
+        "oracle": {
+          "skip": false,
+          "witness": {
+            "x": 0,
+            "y": 1
+          }
+        },
+        "predicate": [
+          "not",
+          [
+            "!=",
+            "x",
+            "x"
+          ]
+        ],
+        "production_can_skip": false,
+        "stats": {
+          "rows": 3,
+          "x": {
+            "hi": 0,
+            "lo": 0,
+            "nulls": 1
+          },
+          "y": {
+            "hi": 2,
+            "lo": -2,
+            "nulls": 0
+          }
+        }
+      },
+      "kind": "manual",
+      "status": "pass"
+    },
+    "manual_null_negated_conjunction": {
+      "detail": {
+        "expected_skip": true,
+        "note": "both operands can only be NULL, so NOT never sees FALSE",
+        "oracle": {
+          "skip": true,
+          "witness": null
+        },
+        "predicate": [
+          "not",
+          [
+            "and",
+            [
+              "=",
+              "x",
+              1
+            ],
+            [
+              "=",
+              "y",
+              2
+            ]
+          ]
+        ],
+        "production_can_skip": true,
+        "stats": {
+          "rows": 2,
+          "x": {
+            "hi": null,
+            "lo": null,
+            "nulls": 2
+          },
+          "y": {
+            "hi": null,
+            "lo": null,
+            "nulls": 2
+          }
+        }
+      },
+      "kind": "manual",
+      "status": "pass"
+    },
+    "manual_null_not": {
+      "detail": {
+        "expected_skip": false,
+        "note": "x=2 makes NOT(FALSE)=TRUE; x=NULL only yields UNKNOWN",
+        "oracle": {
+          "skip": false,
+          "witness": {
+            "x": 2,
+            "y": 0
+          }
+        },
+        "predicate": [
+          "not",
+          [
+            "=",
+            "x",
+            1
+          ]
+        ],
+        "production_can_skip": false,
+        "stats": {
+          "rows": 2,
+          "x": {
+            "hi": 2,
+            "lo": 2,
+            "nulls": 1
+          },
+          "y": {
+            "hi": 7,
+            "lo": 0,
+            "nulls": 0
+          }
+        }
+      },
+      "kind": "manual",
+      "status": "pass"
+    },
+    "manual_same_column_contradiction": {
+      "detail": {
+        "expected_skip": true,
+        "note": "shared x comparisons cannot be satisfied independently",
+        "oracle": {
+          "skip": true,
+          "witness": null
+        },
+        "predicate": [
+          "and",
+          [
+            ">",
+            "x",
+            8
+          ],
+          [
+            "<",
+            "x",
+            5
+          ]
+        ],
+        "production_can_skip": true,
+        "stats": {
+          "rows": 3,
+          "x": {
+            "hi": 9,
+            "lo": 0,
+            "nulls": 0
+          },
+          "y": {
+            "hi": 9,
+            "lo": 0,
+            "nulls": 0
+          }
+        }
+      },
+      "kind": "manual",
+      "status": "pass"
+    },
+    "manual_wide_bounds_impossible": {
+      "detail": {
+        "expected_skip": true,
+        "note": "impossible even though the span has ~2e30 integers",
+        "oracle": {
+          "skip": true,
+          "witness": null
+        },
+        "predicate": [
+          "and",
+          [
+            ">",
+            "x",
+            999999999999999999999999999995
+          ],
+          [
+            "<",
+            "x",
+            -999999999999999999999999999995
+          ]
+        ],
+        "production_can_skip": true,
+        "stats": {
+          "rows": 3,
+          "x": {
+            "hi": 1000000000000000000000000000000,
+            "lo": -1000000000000000000000000000000,
+            "nulls": 0
+          },
+          "y": {
+            "hi": 1000000000000000000000000000000,
+            "lo": -1000000000000000000000000000000,
+            "nulls": 0
+          }
+        }
+      },
+      "kind": "manual",
+      "status": "pass"
+    },
+    "manual_wide_bounds_true": {
+      "detail": {
+        "expected_skip": false,
+        "note": "wide bounds still contain a witness; no integer scan needed",
+        "oracle": {
+          "skip": false,
+          "witness": {
+            "x": 100000000000000000000000000001,
+            "y": -1000000000000000000000000000000
+          }
+        },
+        "predicate": [
+          "and",
+          [
+            ">",
+            "x",
+            100000000000000000000000000000
+          ],
+          [
+            "<",
+            "y",
+            -100000000000000000000000000000
+          ]
+        ],
+        "production_can_skip": false,
+        "stats": {
+          "rows": 3,
+          "x": {
+            "hi": 1000000000000000000000000000000,
+            "lo": -1000000000000000000000000000000,
+            "nulls": 0
+          },
+          "y": {
+            "hi": 1000000000000000000000000000000,
+            "lo": -1000000000000000000000000000000,
+            "nulls": 0
+          }
+        }
+      },
+      "kind": "manual",
+      "status": "pass"
+    },
+    "manual_zero_rows": {
+      "detail": {
+        "expected_skip": true,
+        "note": "zero-row groups are always skipped",
+        "oracle": {
+          "skip": true,
+          "witness": null
+        },
+        "predicate": [
+          "or",
+          [
+            "=",
+            "x",
+            1
+          ],
+          [
+            "!=",
+            "y",
+            2
+          ]
+        ],
+        "production_can_skip": true,
+        "stats": {
+          "rows": 0,
+          "x": {
+            "hi": null,
+            "lo": null,
+            "nulls": 0
+          },
+          "y": {
+            "hi": null,
+            "lo": null,
+            "nulls": 0
+          }
+        }
+      },
+      "kind": "manual",
+      "status": "pass"
+    },
+    "mutation_null_not_negation": {
+      "detail": {
+        "actual_mutated": {
+          "plain": {
+            "rows": [
+              {
+                "x": 2,
+                "y": 0
+              },
+              {
+                "x": null,
+                "y": 7
+              }
+            ],
+            "skipped": []
+          },
+          "pruning": {
+            "rows": [
+              {
+                "x": 2,
+                "y": 0
+              },
+              {
+                "x": null,
+                "y": 7
+              }
+            ],
+            "skipped": []
+          },
+          "stats": {
+            "rows": 2,
+            "x": {
+              "hi": 2,
+              "lo": 2,
+              "nulls": 1
+            },
+            "y": {
+              "hi": 7,
+              "lo": 0,
+              "nulls": 0
+            }
+          }
+        },
+        "detected": true,
+        "exit_code": 0,
+        "expected_correct": {
+          "plain": {
+            "rows": [
+              {
+                "x": 2,
+                "y": 0
+              }
+            ],
+            "skipped": []
+          },
+          "pruning": {
+            "rows": [
+              {
+                "x": 2,
+                "y": 0
+              }
+            ],
+            "skipped": []
+          },
+          "stats": {
+            "rows": 2,
+            "x": {
+              "hi": 2,
+              "lo": 2,
+              "nulls": 1
+            },
+            "y": {
+              "hi": 7,
+              "lo": 0,
+              "nulls": 0
+            }
+          }
+        },
+        "mutation": "semantics.py: NOT UNKNOWN returns TRUE instead of UNKNOWN",
+        "note": "a successful return with a wrong decision/row counts as detection",
+        "stderr_tail": []
+      },
+      "kind": "mutation",
+      "status": "detected"
+    },
+    "mutation_shared_column_independence": {
+      "detail": {
+        "actual_mutated": {
+          "p1": {
+            "can_skip": false,
+            "scan": {
+              "rows": [],
+              "skipped": []
+            }
+          },
+          "p2": {
+            "can_skip": false,
+            "scan": {
+              "rows": [],
+              "skipped": []
+            }
+          }
+        },
+        "detected": true,
+        "exit_code": 0,
+        "expected_correct": {
+          "p1": {
+            "can_skip": true,
+            "scan": {
+              "rows": [],
+              "skipped": [
+                0
+              ]
+            }
+          },
+          "p2": {
+            "can_skip": true,
+            "scan": {
+              "rows": [],
+              "skipped": [
+                0
+              ]
+            }
+          }
+        },
+        "mutation": "pruner.py: feasibility checks each alternative edge separately",
+        "note": "a successful return with a wrong decision/row counts as detection",
+        "stderr_tail": []
+      },
+      "kind": "mutation",
+      "status": "detected"
+    },
+    "oracle_independence_static": {
+      "detail": {
+        "forbidden_symbols": [],
+        "imports": 0,
+        "integer_range_calls": false
+      },
+      "kind": "independence",
+      "status": "pass"
+    },
+    "original_regression": {
+      "detail": {
+        "expected": {
+          "rows": [
+            {
+              "x": 3,
+              "y": 5
+            },
+            {
+              "x": 3,
+              "y": 5
+            }
+          ],
+          "skipped": [
+            0,
+            2
+          ]
+        },
+        "result": {
+          "rows": [
+            {
+              "x": 3,
+              "y": 5
+            },
+            {
+              "x": 3,
+              "y": 5
+            }
+          ],
+          "skipped": [
+            0,
+            2
+          ]
+        }
+      },
+      "kind": "regression",
+      "status": "pass"
+    },
+    "production_baseline": {
+      "detail": {
+        "baseline_commit": "e44f807ac0c71e5740e42c4ff92c09d3e2e04c7d",
+        "matches": true,
+        "mismatched": []
+      },
+      "kind": "immutability",
+      "status": "pass"
+    },
+    "production_files_unchanged": {
+      "detail": {
+        "after": {
+          "pruner.py": "567241851128e4c99ad94cab3ffca6b03d28e4e33e9ad0e812f32442ec3d16d0",
+          "scanner.py": "22eaebd2463f0289c478fd209097ae07a64a6a6678981083f5a6ba01fa1029ad",
+          "semantics.py": "329f37288b4f7210e05531d661f2f185a96d79d27d9950a0e263d66f0d2dc05a"
+        },
+        "before": {
+          "pruner.py": "567241851128e4c99ad94cab3ffca6b03d28e4e33e9ad0e812f32442ec3d16d0",
+          "scanner.py": "22eaebd2463f0289c478fd209097ae07a64a6a6678981083f5a6ba01fa1029ad",
+          "semantics.py": "329f37288b4f7210e05531d661f2f185a96d79d27d9950a0e263d66f0d2dc05a"
+        }
+      },
+      "kind": "immutability",
+      "status": "pass"
+    },
+    "pruner_stats_only": {
+      "detail": {
+        "problems": []
+      },
+      "kind": "metadata-only",
+      "status": "pass"
+    },
+    "report_consistency": {
+      "detail": {
+        "problems": []
+      },
+      "kind": "report",
+      "status": "pass"
+    },
+    "scan_immutability": {
+      "detail": {
+        "result_matches": true,
+        "unchanged": true
+      },
+      "kind": "immutability",
+      "status": "pass"
+    },
+    "scan_pipeline_samples": {
+      "detail": {
+        "checks": 2,
+        "problems": [],
+        "source": "samples.py"
+      },
+      "kind": "scan",
+      "status": "pass"
+    },
+    "scan_pipeline_seeded": {
+      "detail": {
+        "checks": 16,
+        "duplicates": true,
+        "groups": 42,
+        "predicates": 16,
+        "problems": [],
+        "seed": 31337
+      },
+      "kind": "scan",
+      "status": "pass"
+    },
+    "small_domain_pairs": {
+      "detail": {
+        "atoms": 36,
+        "checks": 191808,
+        "mismatches": [],
+        "stats": 37
+      },
+      "kind": "exhaustive",
+      "status": "pass"
+    },
+    "small_domain_pruning": {
+      "detail": {
+        "atoms": 216,
+        "checks": 47304,
+        "match": true,
+        "mismatches": [],
+        "stats": 219
+      },
+      "kind": "exhaustive",
+      "status": "pass"
+    },
+    "small_domain_rows": {
+      "detail": {
+        "checks": 6776,
+        "mismatches": [],
+        "predicates": 44,
+        "stats": 55
+      },
+      "kind": "exhaustive",
+      "status": "pass"
+    },
+    "stress_deep_16leaf": {
+      "detail": {
+        "constant_span": 2000000000000000000000000000000,
+        "depth": 16,
+        "elapsed_seconds": 0.761993,
+        "groups": 12,
+        "leaves": 16,
+        "peak_python_bytes": 1674848,
+        "predicates": [
+          {
+            "decisions_checked": 12,
+            "depth": 16,
+            "expected_skip_per_group": [
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true,
+              true
+            ],
+            "first_witness": [],
+            "label": "generated",
+            "leaves": 16,
+            "matched_rows": 0,
+            "predicate": [
+              "and",
+              [
+                "and",
+                [
+                  "and",
+                  [
+                    "and",
+                    [
+                      "and",
+                      [
+                        "and",
+                        [
+                          "and",
+                          [
+                            "and",
+                            [
+                              "and",
+                              [
+                                "and",
+                                [
+                                  "and",
+                                  [
+                                    "and",
+                                    [
+                                      "and",
+                                      [
+                                        "and",
+                                        [
+                                          "and",
+                                          [
+                                            ">",
+                                            "x",
+                                            999999999999999999999999999995
+                                          ],
+                                          [
+                                            "<",
+                                            "x",
+                                            -999999999999999999999999999995
+                                          ]
+                                        ],
+                                        [
+                                          ">=",
+                                          "y",
+                                          2
+                                        ]
+                                      ],
+                                      [
+                                        ">=",
+                                        -1000000000000000,
+                                        "x"
+                                      ]
+                                    ],
+                                    [
+                                      ">=",
+                                      "y",
+                                      "x"
+                                    ]
+                                  ],
+                                  [
+                                    "<=",
+                                    0,
+                                    0
+                                  ]
+                                ],
+                                [
+                                  "<=",
+                                  -1000000000000000,
+                                  "x"
+                                ]
+                              ],
+                              [
+                                "!=",
+                                0,
+                                -1000000000000000
+                              ]
+                            ],
+                            [
+                              "=",
+                              2,
+                              -1000000000000000
+                            ]
+                          ],
+                          [
+                            "<=",
+                            "x",
+                            -1000000000000000
+                          ]
+                        ],
+                        [
+                          "!=",
+                          "x",
+                          "x"
+                        ]
+                      ],
+                      [
+                        ">=",
+                        -1000000000000000,
+                        -1000000000000000
+                      ]
+                    ],
+                    [
+                      "!=",
+                      -1000000000000000,
+                      "x"
+                    ]
+                  ],
+                  [
+                    ">",
+                    -1000000000000000,
+                    0
+                  ]
+                ],
+                [
+                  ">=",
+                  0,
+                  0
+                ]
+              ],
+              [
+                "!=",
+                -1000000000000000,
+                "y"
+              ]
+            ],
+            "skipped_groups": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ]
+          },
+          {
+            "decisions_checked": 12,
+            "depth": 2,
+            "expected_skip_per_group": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "first_witness": [
+              {
+                "x": 0,
+                "y": -3
+              }
+            ],
+            "label": "witness",
+            "leaves": 2,
+            "matched_rows": 2910,
+            "predicate": [
+              "and",
+              [
+                ">",
+                "x",
+                -1000000000000000000000000000000
+              ],
+              [
+                "<",
+                "y",
+                1000000000000000000000000000000
+              ]
+            ],
+            "skipped_groups": []
+          }
+        ],
+        "problems": [],
+        "rows": 4800
+      },
+      "kind": "stress",
+      "status": "pass"
+    },
+    "stress_wide_16leaf": {
+      "detail": {
+        "constant_span": 2000000000000000000000000000000,
+        "depth": 16,
+        "elapsed_seconds": 1.603757,
+        "groups": 12,
+        "leaves": 16,
+        "peak_python_bytes": 2255468,
+        "predicates": [
+          {
+            "decisions_checked": 12,
+            "depth": 16,
+            "expected_skip_per_group": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "first_witness": [
+              {
+                "x": 0,
+                "y": -3
+              }
+            ],
+            "label": "generated",
+            "leaves": 16,
+            "matched_rows": 2910,
+            "predicate": [
+              "and",
+              [
+                "and",
+                [
+                  "and",
+                  [
+                    "and",
+                    [
+                      "and",
+                      [
+                        "and",
+                        [
+                          "and",
+                          [
+                            "and",
+                            [
+                              "and",
+                              [
+                                "and",
+                                [
+                                  "and",
+                                  [
+                                    "and",
+                                    [
+                                      "and",
+                                      [
+                                        "and",
+                                        [
+                                          "and",
+                                          [
+                                            ">=",
+                                            "x",
+                                            -882352941176470588235294117648
+                                          ],
+                                          [
+                                            "<=",
+                                            "y",
+                                            764705882352941176470588235297
+                                          ]
+                                        ],
+                                        [
+                                          "!=",
+                                          "x",
+                                          -647058823529411764705882352944
+                                        ]
+                                      ],
+                                      [
+                                        "!=",
+                                        "y",
+                                        -529411764705882352941176470592
+                                      ]
+                                    ],
+                                    [
+                                      ">=",
+                                      "x",
+                                      -411764705882352941176470588240
+                                    ]
+                                  ],
+                                  [
+                                    "<=",
+                                    "y",
+                                    294117647058823529411764705889
+                                  ]
+                                ],
+                                [
+                                  "!=",
+                                  "x",
+                                  -176470588235294117647058823536
+                                ]
+                              ],
+                              [
+                                "!=",
+                                "y",
+                                -58823529411764705882352941184
+                              ]
+                            ],
+                            [
+                              ">=",
+                              "x",
+                              -882352941176470588235294117647
+                            ]
+                          ],
+                          [
+                            "<=",
+                            "y",
+                            764705882352941176470588235296
+                          ]
+                        ],
+                        [
+                          "!=",
+                          "x",
+                          -647058823529411764705882352943
+                        ]
+                      ],
+                      [
+                        "!=",
+                        "y",
+                        -529411764705882352941176470591
+                      ]
+                    ],
+                    [
+                      ">=",
+                      "x",
+                      -411764705882352941176470588239
+                    ]
+                  ],
+                  [
+                    "<=",
+                    "y",
+                    294117647058823529411764705888
+                  ]
+                ],
+                [
+                  "!=",
+                  "x",
+                  -176470588235294117647058823535
+                ]
+              ],
+              [
+                "!=",
+                "y",
+                -58823529411764705882352941183
+              ]
+            ],
+            "skipped_groups": []
+          },
+          {
+            "decisions_checked": 12,
+            "depth": 2,
+            "expected_skip_per_group": [
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              false
+            ],
+            "first_witness": [
+              {
+                "x": 0,
+                "y": -3
+              }
+            ],
+            "label": "witness",
+            "leaves": 2,
+            "matched_rows": 2910,
+            "predicate": [
+              "and",
+              [
+                ">",
+                "x",
+                -1000000000000000000000000000000
+              ],
+              [
+                "<",
+                "y",
+                1000000000000000000000000000000
+              ]
+            ],
+            "skipped_groups": []
+          }
+        ],
+        "problems": [],
+        "rows": 4800
+      },
+      "kind": "stress",
+      "status": "pass"
+    },
+    "verifier_selftest": {
+      "detail": {
+        "mutation_detection_logic": true,
+        "null_witness_on_non_null_column_rejected": true,
+        "out_of_envelope_witness_rejected": true,
+        "self_consistent": true,
+        "wrong_skip_flagged": true
+      },
+      "kind": "selftest",
+      "status": "pass"
+    }
+  },
+  "counterexample_counts_by_source": {},
+  "counterexamples": [],
+  "counterexamples_per_source_cap": 40,
+  "generated_at": "2026-11-15T03:00:10Z",
+  "limits": {
+    "max_comparisons": 16,
+    "max_constant_abs": 1000000000000000000000000000000,
+    "max_depth": 16
+  },
+  "production_deviations": 0,
+  "production_sha256": {
+    "pruner.py": "567241851128e4c99ad94cab3ffca6b03d28e4e33e9ad0e812f32442ec3d16d0",
+    "scanner.py": "22eaebd2463f0289c478fd209097ae07a64a6a6678981083f5a6ba01fa1029ad",
+    "semantics.py": "329f37288b4f7210e05531d661f2f185a96d79d27d9950a0e263d66f0d2dc05a"
+  },
+  "python": "3.11.2",
+  "rerun": [
+    "python3",
+    "qa.py",
+    "verify"
+  ],
+  "schema": "qa-evidence-v1",
+  "seeds": {
+    "differential": [
+      7,
+      2024,
+      20261115
+    ],
+    "predicates": [
+      90210,
+      90211
+    ],
+    "scan": 31337,
+    "stress": 4242
+  },
+  "stress": [
+    {
+      "case": "stress_wide_16leaf",
+      "constant_span": 2000000000000000000000000000000,
+      "depth": 16,
+      "elapsed_seconds": 1.603757,
+      "groups": 12,
+      "leaves": 16,
+      "peak_python_bytes": 2255468,
+      "predicates": [
+        {
+          "decisions_checked": 12,
+          "depth": 16,
+          "expected_skip_per_group": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "first_witness": [
+            {
+              "x": 0,
+              "y": -3
+            }
+          ],
+          "label": "generated",
+          "leaves": 16,
+          "matched_rows": 2910,
+          "predicate": [
+            "and",
+            [
+              "and",
+              [
+                "and",
+                [
+                  "and",
+                  [
+                    "and",
+                    [
+                      "and",
+                      [
+                        "and",
+                        [
+                          "and",
+                          [
+                            "and",
+                            [
+                              "and",
+                              [
+                                "and",
+                                [
+                                  "and",
+                                  [
+                                    "and",
+                                    [
+                                      "and",
+                                      [
+                                        "and",
+                                        [
+                                          ">=",
+                                          "x",
+                                          -882352941176470588235294117648
+                                        ],
+                                        [
+                                          "<=",
+                                          "y",
+                                          764705882352941176470588235297
+                                        ]
+                                      ],
+                                      [
+                                        "!=",
+                                        "x",
+                                        -647058823529411764705882352944
+                                      ]
+                                    ],
+                                    [
+                                      "!=",
+                                      "y",
+                                      -529411764705882352941176470592
+                                    ]
+                                  ],
+                                  [
+                                    ">=",
+                                    "x",
+                                    -411764705882352941176470588240
+                                  ]
+                                ],
+                                [
+                                  "<=",
+                                  "y",
+                                  294117647058823529411764705889
+                                ]
+                              ],
+                              [
+                                "!=",
+                                "x",
+                                -176470588235294117647058823536
+                              ]
+                            ],
+                            [
+                              "!=",
+                              "y",
+                              -58823529411764705882352941184
+                            ]
+                          ],
+                          [
+                            ">=",
+                            "x",
+                            -882352941176470588235294117647
+                          ]
+                        ],
+                        [
+                          "<=",
+                          "y",
+                          764705882352941176470588235296
+                        ]
+                      ],
+                      [
+                        "!=",
+                        "x",
+                        -647058823529411764705882352943
+                      ]
+                    ],
+                    [
+                      "!=",
+                      "y",
+                      -529411764705882352941176470591
+                    ]
+                  ],
+                  [
+                    ">=",
+                    "x",
+                    -411764705882352941176470588239
+                  ]
+                ],
+                [
+                  "<=",
+                  "y",
+                  294117647058823529411764705888
+                ]
+              ],
+              [
+                "!=",
+                "x",
+                -176470588235294117647058823535
+              ]
+            ],
+            [
+              "!=",
+              "y",
+              -58823529411764705882352941183
+            ]
+          ],
+          "skipped_groups": []
+        },
+        {
+          "decisions_checked": 12,
+          "depth": 2,
+          "expected_skip_per_group": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "first_witness": [
+            {
+              "x": 0,
+              "y": -3
+            }
+          ],
+          "label": "witness",
+          "leaves": 2,
+          "matched_rows": 2910,
+          "predicate": [
+            "and",
+            [
+              ">",
+              "x",
+              -1000000000000000000000000000000
+            ],
+            [
+              "<",
+              "y",
+              1000000000000000000000000000000
+            ]
+          ],
+          "skipped_groups": []
+        }
+      ],
+      "problems": [],
+      "rows": 4800
+    },
+    {
+      "case": "stress_deep_16leaf",
+      "constant_span": 2000000000000000000000000000000,
+      "depth": 16,
+      "elapsed_seconds": 0.761993,
+      "groups": 12,
+      "leaves": 16,
+      "peak_python_bytes": 1674848,
+      "predicates": [
+        {
+          "decisions_checked": 12,
+          "depth": 16,
+          "expected_skip_per_group": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "first_witness": [],
+          "label": "generated",
+          "leaves": 16,
+          "matched_rows": 0,
+          "predicate": [
+            "and",
+            [
+              "and",
+              [
+                "and",
+                [
+                  "and",
+                  [
+                    "and",
+                    [
+                      "and",
+                      [
+                        "and",
+                        [
+                          "and",
+                          [
+                            "and",
+                            [
+                              "and",
+                              [
+                                "and",
+                                [
+                                  "and",
+                                  [
+                                    "and",
+                                    [
+                                      "and",
+                                      [
+                                        "and",
+                                        [
+                                          ">",
+                                          "x",
+                                          999999999999999999999999999995
+                                        ],
+                                        [
+                                          "<",
+                                          "x",
+                                          -999999999999999999999999999995
+                                        ]
+                                      ],
+                                      [
+                                        ">=",
+                                        "y",
+                                        2
+                                      ]
+                                    ],
+                                    [
+                                      ">=",
+                                      -1000000000000000,
+                                      "x"
+                                    ]
+                                  ],
+                                  [
+                                    ">=",
+                                    "y",
+                                    "x"
+                                  ]
+                                ],
+                                [
+                                  "<=",
+                                  0,
+                                  0
+                                ]
+                              ],
+                              [
+                                "<=",
+                                -1000000000000000,
+                                "x"
+                              ]
+                            ],
+                            [
+                              "!=",
+                              0,
+                              -1000000000000000
+                            ]
+                          ],
+                          [
+                            "=",
+                            2,
+                            -1000000000000000
+                          ]
+                        ],
+                        [
+                          "<=",
+                          "x",
+                          -1000000000000000
+                        ]
+                      ],
+                      [
+                        "!=",
+                        "x",
+                        "x"
+                      ]
+                    ],
+                    [
+                      ">=",
+                      -1000000000000000,
+                      -1000000000000000
+                    ]
+                  ],
+                  [
+                    "!=",
+                    -1000000000000000,
+                    "x"
+                  ]
+                ],
+                [
+                  ">",
+                  -1000000000000000,
+                  0
+                ]
+              ],
+              [
+                ">=",
+                0,
+                0
+              ]
+            ],
+            [
+              "!=",
+              -1000000000000000,
+              "y"
+            ]
+          ],
+          "skipped_groups": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "decisions_checked": 12,
+          "depth": 2,
+          "expected_skip_per_group": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "first_witness": [
+            {
+              "x": 0,
+              "y": -3
+            }
+          ],
+          "label": "witness",
+          "leaves": 2,
+          "matched_rows": 2910,
+          "predicate": [
+            "and",
+            [
+              ">",
+              "x",
+              -1000000000000000000000000000000
+            ],
+            [
+              "<",
+              "y",
+              1000000000000000000000000000000
+            ]
+          ],
+          "skipped_groups": []
+        }
+      ],
+      "problems": [],
+      "rows": 4800
+    }
+  ]
+}
